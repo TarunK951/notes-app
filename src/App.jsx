@@ -4,7 +4,9 @@ import NotesPage from "./pages/notes";
 function App() {
   return (
     <>
-      <NotesPage />
+      <div className="notes-page">
+        <NotesPage />
+      </div>
     </>
   );
 }

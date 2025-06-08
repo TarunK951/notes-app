@@ -1,0 +1,20 @@
+.notes-list {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+}
+
+.list-details {
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.add-btn {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}

@@ -1,8 +1,7 @@
 //
 import Navbar from "../../features/notes/components/Navbar";
-import NoteActions from "../../features/notes/components/NoteActions";
 import NoteList from "../../features/notes/components/NoteList";
-import SelectedNote from "../../features/notes/components/SelectedNote";
+import NotesListItem from "../../features/notes/components/NotesListItem";
 import Sidebar from "../../features/notes/components/Sidebar";
 import "./notes.css";
 
@@ -14,8 +13,9 @@ function NotesPage() {
         <Navbar />
         <section className="notes-container">
           <NoteList />
-          <SelectedNote />
-          <NoteActions />
+          <section className="note-list-item">
+            <NotesListItem />
+          </section>
         </section>
       </section>
     </main>
