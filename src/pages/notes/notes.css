@@ -5,7 +5,7 @@
   display: flex;
 
   .notes-sidebar {
-    flex-basis: 25%;
+    /* flex-basis: 20%; */
     background-color: bisque;
     padding: 30px;
   }
