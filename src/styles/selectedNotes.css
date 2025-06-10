@@ -1,0 +1,5 @@
+.selected-note {
+  display: flex;
+  width: 75%;
+  height: 90vh;
+}
