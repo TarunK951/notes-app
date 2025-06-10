@@ -4,7 +4,7 @@ import SelectedNote from "./SelectedNote";
 
 function NotesListItem({ display, setDisplay }) {
   if (!display) {
-    return <div className="selected-note">No note selected</div>;
+    return <div className="selected-note">No note selected note</div>;
   }
   return (
     <div>
