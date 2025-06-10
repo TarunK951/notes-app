@@ -8,10 +8,13 @@ import "./notes.css";
 
 function NotesPage() {
   const [display, setDisplay] = useState(null);
+  const [data, setData] = useState([
+    { name: "myname", details: "hello", tags: "ok" },
+  ]);
 
   return (
     <main className="notes">
-      <Sidebar />
+      <Sidebar data={data} setData={setData} />
       <section className="notes-content-area">
         <Navbar />
         <section className="notes-container">
