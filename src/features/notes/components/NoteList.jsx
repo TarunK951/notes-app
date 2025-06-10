@@ -2,7 +2,7 @@ import { useState } from "react";
 import { IoIosAdd } from "react-icons/io";
 import "../../../styles/noteList.css";
 
-function NoteList() {
+function NoteList({ setDisplay }) {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState([
     { name: "myname", details: "hello", tags: "ok" },
@@ -25,9 +25,9 @@ function NoteList() {
       },
     ]);
 
-    // setName("");
-    // setDetails("");
-    // setTags("");
+    setName("");
+    setDetails("");
+    setTags("");
   };
 
   return (
@@ -40,6 +40,7 @@ function NoteList() {
 
       {open && (
         <div className="input-pop">
+          <button onClick={() => setOpen(!open)}>X</button>
           <form onSubmit={handleSubmit}>
             <div>
               <label htmlFor="name">Name</label>
@@ -84,7 +85,11 @@ function NoteList() {
 
       <div className="list-container">
         {data.map((item, index) => (
-          <div className="list-details" key={index}>
+          <div
+            className="list-details"
+            key={index}
+            onClick={() => setDisplay(item)}
+          >
             <p>{item.name}</p>
             <p>{item.tags}</p>
             <p>{item.details}</p>

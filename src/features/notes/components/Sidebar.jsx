@@ -13,7 +13,7 @@ function Sidebar() {
         <h2> Notes</h2>
       </div>
       <div className="sidebar-options">
-        <button className="sidebar-btn">
+        <button className="sidebar-btn" onClick={() => {}}>
           <MdOutlineSpeakerNotes />
           All Notes
         </button>
