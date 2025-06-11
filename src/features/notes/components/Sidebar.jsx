@@ -5,7 +5,7 @@ import { MdOutlineSpeakerNotes } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import "../../../styles/sidebar.css";
 
-function Sidebar() {
+function Sidebar({ data, SetNotes, deletedNotes, archivedNotes }) {
   return (
     <aside className="notes-sidebar">
       <div className="logo-container">
@@ -13,16 +13,31 @@ function Sidebar() {
         <h2> Notes</h2>
       </div>
       <div className="sidebar-options">
-        <button className="sidebar-btn" onClick={() => {}}>
+        <button
+          className="sidebar-btn"
+          onClick={() => {
+            SetNotes(data);
+          }}
+        >
           <MdOutlineSpeakerNotes />
           All Notes
         </button>
-        <button className="sidebar-btn">
+        <button
+          className="sidebar-btn"
+          onClick={() => {
+            SetNotes(archivedNotes);
+          }}
+        >
           {" "}
           <IoArchive />
           Archive Notes
         </button>
-        <button className="sidebar-btn">
+        <button
+          className="sidebar-btn"
+          onClick={() => {
+            SetNotes(deletedNotes);
+          }}
+        >
           <RiDeleteBin6Line /> Recycle Bin
         </button>
       </div>

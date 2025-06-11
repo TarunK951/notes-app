@@ -2,17 +2,13 @@ import { useState } from "react";
 import { IoIosAdd } from "react-icons/io";
 import "../../../styles/noteList.css";
 
-function NoteList({ setDisplay }) {
+function NoteList({ setDisplay, notes, setData, data }) {
+  const tagOptions = ["a", "b", "c", "d", "e", "f", "g"];
   const [open, setOpen] = useState(false);
-  const [data, setData] = useState([
-    { name: "myname", details: "hello", tags: "ok" },
-  ]);
   const [name, setName] = useState("");
   const [details, setDetails] = useState("");
   const [tags, setTags] = useState("");
-  const tagOptions = ["a", "b", "c", "d", "e", "f", "g"];
-
-  const handleSubmit = (e) => {
+  const addNewItem = (e) => {
     e.preventDefault();
 
     setData([
@@ -40,8 +36,8 @@ function NoteList({ setDisplay }) {
 
       {open && (
         <div className="input-pop">
-          <button onClick={() => setOpen(!open)}>X</button>
-          <form onSubmit={handleSubmit}>
+          <button onClick={() => setOpen(false)}>X</button>
+          <form onSubmit={addNewItem}>
             <div>
               <label htmlFor="name">Name</label>
               <input
@@ -84,10 +80,10 @@ function NoteList({ setDisplay }) {
       )}
 
       <div className="list-container">
-        {data.map((item, index) => (
+        {notes.map((item, index) => (
           <div
             className="list-details"
-            key={index}
+            key={item.id || index}
             onClick={() => setDisplay(item)}
           >
             <p>{item.name}</p>
