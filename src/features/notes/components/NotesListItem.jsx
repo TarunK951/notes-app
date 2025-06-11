@@ -2,7 +2,7 @@ import "../../../styles/noteListItem.css";
 import NoteActions from "./NoteActions";
 import SelectedNote from "./SelectedNote";
 
-function NotesListItem({ display, setDisplay }) {
+function NotesListItem({ display, setDisplay, deleteNote }) {
   if (!display) {
     return <div className="selected-note">No note selected note</div>;
   }
@@ -10,7 +10,7 @@ function NotesListItem({ display, setDisplay }) {
     <div>
       <div className="container">
         <SelectedNote display={display} setDisplay={setDisplay} />
-        <NoteActions />
+        <NoteActions display={display} deleteNote={deleteNote} />
       </div>
     </div>
   );
