@@ -2,7 +2,18 @@ import "../../../styles/noteListItem.css";
 import NoteActions from "./NoteActions";
 import SelectedNote from "./SelectedNote";
 
-function NotesListItem({ display, setDisplay, deleteNote }) {
+function NotesListItem({
+  display,
+  setDisplay,
+  deleteNote,
+  archive,
+  completeNote,
+  unArchive,
+  recoverNote,
+  eraseNote,
+  undoComplete,
+  view,
+}) {
   if (!display) {
     return <div className="selected-note">No note selected note</div>;
   }
@@ -10,7 +21,17 @@ function NotesListItem({ display, setDisplay, deleteNote }) {
     <div>
       <div className="container">
         <SelectedNote display={display} setDisplay={setDisplay} />
-        <NoteActions display={display} deleteNote={deleteNote} />
+        <NoteActions
+          display={display}
+          view={view}
+          deleteNote={deleteNote}
+          completeNote={completeNote}
+          undoComplete={undoComplete}
+          unArchive={unArchive}
+          archive={archive}
+          recoverNote={recoverNote}
+          eraseNote={eraseNote}
+        />
       </div>
     </div>
   );

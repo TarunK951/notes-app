@@ -2,7 +2,7 @@ import { useState } from "react";
 import { IoIosAdd } from "react-icons/io";
 import "../../../styles/noteList.css";
 
-function NoteList({ setDisplay, notes, setData, data }) {
+function NoteList({ setDisplay, setAllNotes, allNotes }) {
   const tagOptions = ["a", "b", "c", "d", "e", "f", "g"];
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
@@ -11,10 +11,10 @@ function NoteList({ setDisplay, notes, setData, data }) {
   const addNewItem = (e) => {
     e.preventDefault();
 
-    setData([
-      ...data,
+    setAllNotes([
+      ...allNotes,
       {
-        id: new Date().toISOString(),
+        id: new Date(),
         name: name.trim() === "" ? "empty" : name,
         details,
         tags,
@@ -80,7 +80,7 @@ function NoteList({ setDisplay, notes, setData, data }) {
       )}
 
       <div className="list-container">
-        {notes.map((item, index) => (
+        {allNotes.map((item, index) => (
           <div
             className="list-details"
             key={item.id || index}
