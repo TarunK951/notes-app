@@ -20,4 +20,22 @@
   align-items: center;
   background-color: transparent;
   width: 150px;
+  padding: 5px 3px;
+  border: none; /* Ensure no default border */
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  color: #333; /* Default text/icon color */
+}
+
+.sidebar-btn:hover {
+  background-color: #e0e0e0; /* Light gray on hover */
+}
+
+.sidebar-btn.selected {
+  background-color: #4caf50; /* Green for selected */
+  color: white; /* White text/icon for contrast */
+}
+
+.sidebar-btn.selected:hover {
+  background-color: #45a049; /* Darker green on hover */
 }

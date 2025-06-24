@@ -1,12 +1,12 @@
 .notes {
   height: 100%;
   width: 100%;
-  background-color: aqua;
+
   display: flex;
 
   .notes-sidebar {
     /* flex-basis: 20%; */
-    background-color: bisque;
+
     padding: 30px;
   }
   .notes-content-area {
@@ -16,7 +16,7 @@
 
     .notes-navbar {
       height: 80px;
-      background-color: aliceblue;
+
       width: 100%;
       padding: 20px;
     }
@@ -30,7 +30,7 @@
       .notes-list {
         min-width: 20%;
         flex: 1;
-        background-color: brown;
+
         padding: 20px;
       }
     }

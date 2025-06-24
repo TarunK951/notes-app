@@ -91,6 +91,7 @@ function NotesPage() {
         return deletedNotes;
       case "completed":
         return completedNotes;
+
       default:
         return allNotes;
     }

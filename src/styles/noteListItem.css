@@ -6,9 +6,3 @@
 .selectedNote-container {
   width: 50%;
 }
-.input-pop {
-  display: flex;
-  position: absolute;
-  top: 50%;
-  right: 50%;
-}
