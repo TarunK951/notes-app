@@ -88,3 +88,17 @@
   border-radius: 5px;
   border: 1px solid;
 }
+.tag-button {
+  padding: 5px 10px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+.tag-button.active-tag {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}

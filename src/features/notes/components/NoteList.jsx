@@ -2,20 +2,22 @@ import { useState } from "react";
 import { IoIosAdd } from "react-icons/io";
 import "../../../styles/noteList.css";
 
-function NoteList({ setDisplay, setAllNotes, allNotes }) {
+function NoteList({ setDisplay, setAllNotes, allNotes, selectedTag }) {
   const tagOptions = ["a", "b", "c", "d", "e", "f", "g"];
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [details, setDetails] = useState("");
   const [tags, setTags] = useState("");
+
   const addNewItem = (e) => {
     e.preventDefault();
+    if (!name.trim() && !tags && !details.trim()) return; // Prevent empty submissions
 
     setAllNotes([
       ...allNotes,
       {
-        id: new Date(),
-        name: name.trim() === "" ? "empty" : name,
+        id: Date.now(),
+        name: name.trim() || "empty",
         details,
         tags,
       },
@@ -24,6 +26,11 @@ function NoteList({ setDisplay, setAllNotes, allNotes }) {
     setName("");
     setDetails("");
     setTags("");
+    setOpen(false);
+  };
+
+  const handleTagClick = (tag) => {
+    setTags(tags === tag ? "" : tag); // Toggle tag selection
   };
 
   return (
@@ -58,9 +65,8 @@ function NoteList({ setDisplay, setAllNotes, allNotes }) {
                   <button
                     type="button"
                     key={tag}
-                    id="tag"
-                    onClick={() => setTags(tag)}
-                    className={tags === tag ? "active-tag" : ""}
+                    onClick={() => handleTagClick(tag)}
+                    className={`tag-button ${tags === tag ? "active-tag" : ""}`}
                   >
                     {tag}
                   </button>
@@ -89,17 +95,20 @@ function NoteList({ setDisplay, setAllNotes, allNotes }) {
       )}
 
       <div className="list-container">
-        {allNotes.map((item, index) => (
-          <div
-            className="list-details"
-            key={item.id || index}
-            onClick={() => setDisplay(item)}
-          >
-            <p>{item.name}</p>
-            <p>{item.tags}</p>
-            {/* <p>{item.details}</p> */}
-          </div>
-        ))}
+        {allNotes.length === 0 && selectedTag ? (
+          <p className="no-notes">No elements with this tag</p>
+        ) : (
+          allNotes.map((item, index) => (
+            <div
+              className="list-details"
+              key={item.id || index}
+              onClick={() => setDisplay(item)}
+            >
+              <p>{item.name}</p>
+              <p>{item.tags || "No tags"}</p>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

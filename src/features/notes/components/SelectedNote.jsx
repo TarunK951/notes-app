@@ -4,7 +4,7 @@ function SelectedNote({ display, setDisplay }) {
   return (
     <div className="selected-note">
       <div className="note-header">
-        <button className="close-btn" onClick={() => setDisplay(!display)}>
+        <button className="close-btn" onClick={() => setDisplay(null)}>
           ×
         </button>
       </div>
@@ -13,15 +13,17 @@ function SelectedNote({ display, setDisplay }) {
         <div className="note-details">
           <div className="note-item">
             <span className="note-label">Name:</span>
-            <span className="note-value">{display.name}</span>
+            <span className="note-value">{display.name || "No name"}</span>
           </div>
           <div className="note-item">
             <span className="note-label">Tags:</span>
-            <span className="note-value">{display.tags}</span>
+            <span className="note-value">{display.tags || "No tags"}</span>
           </div>
           <div className="note-item-details">
             <span className="note-label">Details:</span>
-            <span className="note-value">{display.details}</span>
+            <span className="note-value">
+              {display.details || "No details"}
+            </span>
           </div>
         </div>
       </div>

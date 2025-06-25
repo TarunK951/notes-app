@@ -21,21 +21,47 @@
   background-color: transparent;
   width: 150px;
   padding: 5px 3px;
-  border: none; /* Ensure no default border */
+  border: none;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
-  color: #333; /* Default text/icon color */
+  color: #333;
 }
 
 .sidebar-btn:hover {
-  background-color: #e0e0e0; /* Light gray on hover */
+  background-color: #e0e0e0;
 }
 
 .sidebar-btn.selected {
-  background-color: #4caf50; /* Green for selected */
-  color: white; /* White text/icon for contrast */
+  background-color: #4caf50;
 }
 
 .sidebar-btn.selected:hover {
-  background-color: #45a049; /* Darker green on hover */
+  background-color: #45a049;
+}
+
+/* tags css */
+.tags-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.tags-title {
+  text-align: left;
+  padding-left: 20px;
+}
+
+.tag-names {
+  padding-left: 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: left;
+}
+
+.tag-btn {
+  width: 80px;
+  padding: 5px 2px;
 }

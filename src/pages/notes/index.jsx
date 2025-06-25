@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../../features/notes/components/Navbar";
 import NoteList from "../../features/notes/components/NoteList";
 import NotesListItem from "../../features/notes/components/NotesListItem";
@@ -8,21 +8,32 @@ import "./notes.css";
 function NotesPage() {
   const [display, setDisplay] = useState(null);
   const [allNotes, setAllNotes] = useState([
-    { id: "1", name: "myname", details: "hello", tags: "ok" },
+    { id: "1", name: "myname", details: "hello", tags: "a" },
   ]);
   const [deletedNotes, setDeletedNotes] = useState([
-    { id: "0020", name: "deleted" },
+    { id: "0020", name: "deleted", tags: "b" },
   ]);
   const [archivedNotes, setArchivedNotes] = useState([
-    { id: "0050", name: "archived" },
+    { id: "0050", name: "archived", tags: "c" },
   ]);
   const [completedNotes, setCompletedNotes] = useState([
-    { id: "0090", name: "completed" },
+    { id: "0090", name: "completed", tags: "d" },
   ]);
-
   const [view, setView] = useState("all");
+  const [selectedTag, setSelectedTag] = useState(null); // Track selected tag
 
-  // delete..........
+  // Debug state changes
+  useEffect(() => {
+    console.log("allNotes:", allNotes);
+    console.log("archivedNotes:", archivedNotes);
+    console.log("deletedNotes:", deletedNotes);
+    console.log("selectedTag:", selectedTag);
+  }, [allNotes, archivedNotes, deletedNotes, selectedTag]);
+
+  // Tag options (consistent with NoteList)
+  const tagOptions = ["a", "b", "c", "d", "e", "f", "g"];
+
+  // Delete note
   const deleteNote = (noteToDelete) => {
     setAllNotes((prev) => prev.filter((item) => item.id !== noteToDelete.id));
     setArchivedNotes((prev) =>
@@ -33,73 +44,80 @@ function NotesPage() {
     );
     setDisplay(null);
     setDeletedNotes((prev) => [...prev, noteToDelete]);
-    console.log("allnotes", allNotes);
-    console.log("archived", archivedNotes);
-    console.log("deleted", deletedNotes);
   };
 
-  // archive ...........
+  // Archive note
   const archive = (note) => {
     setAllNotes((prev) => prev.filter((item) => item.id !== note.id));
     setArchivedNotes((prev) => [...prev, note]);
     setDisplay(null);
-    console.log("allnotes", allNotes);
-    console.log("archived", archivedNotes);
-    console.log("deleted", deletedNotes);
   };
 
-  // Mark note as completed.............
+  // Mark note as completed
   const completeNote = (note) => {
     setAllNotes((prev) => prev.filter((item) => item.id !== note.id));
     setCompletedNotes((prev) => [...prev, note]);
     setDisplay(null);
   };
 
-  // Undo completed ..............
+  // Undo completed
   const undoComplete = (note) => {
     setCompletedNotes((prev) => prev.filter((item) => item.id !== note.id));
     setAllNotes((prev) => [...prev, note]);
     setDisplay(null);
   };
 
-  // Recover  .............
+  // Recover note
   const recoverNote = (note) => {
     setDeletedNotes((prev) => prev.filter((item) => item.id !== note.id));
     setAllNotes((prev) => [...prev, note]);
     setDisplay(null);
   };
 
-  // Erase ...............
+  // Erase note
   const eraseNote = (note) => {
     setDeletedNotes((prev) => prev.filter((item) => item.id !== note.id));
     setDisplay(null);
   };
 
-  // Unarchive......
+  // Unarchive note
   const unArchive = (note) => {
     setArchivedNotes((prev) => prev.filter((item) => item.id !== note.id));
     setAllNotes((prev) => [...prev, note]);
     setDisplay(null);
   };
 
-  // Get current list based on view
+  // Get current notes based on view and selected tag
   const getCurrentNotes = () => {
+    let notes;
     switch (view) {
       case "archived":
-        return archivedNotes;
+        notes = archivedNotes;
+        break;
       case "deleted":
-        return deletedNotes;
+        notes = deletedNotes;
+        break;
       case "completed":
-        return completedNotes;
-
+        notes = completedNotes;
+        break;
       default:
-        return allNotes;
+        notes = allNotes;
     }
+
+    // Apply tag filter if selectedTag is set
+    if (selectedTag) {
+      return notes.filter((note) => note.tags === selectedTag);
+    }
+    return notes;
   };
 
   return (
     <main className="notes">
-      <Sidebar setView={setView} />
+      <Sidebar
+        setView={setView}
+        tagOptions={tagOptions}
+        setSelectedTag={setSelectedTag}
+      />
       <section className="notes-content-area">
         <Navbar />
         <section className="notes-container">
@@ -108,6 +126,7 @@ function NotesPage() {
             allNotes={getCurrentNotes()}
             setAllNotes={setAllNotes}
             setDisplay={setDisplay}
+            selectedTag={selectedTag}
           />
           <section className="note-list-item">
             <NotesListItem
