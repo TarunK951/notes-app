@@ -3,19 +3,28 @@ import "../../../styles/selectedNotes.css";
 function SelectedNote({ display, setDisplay }) {
   return (
     <div className="selected-note">
-      <button className="close-btn" onClick={() => setDisplay(!display)}>
-        Close
-      </button>
-      <h3>Selected Note</h3>
-      <p>
-        <strong>Name:</strong> {display.name}
-      </p>
-      <p>
-        <strong>Tags:</strong> {display.tags}
-      </p>
-      <p>
-        <strong>Details:</strong> {display.details}
-      </p>
+      <div className="note-header">
+        <button className="close-btn" onClick={() => setDisplay(!display)}>
+          ×
+        </button>
+      </div>
+      <div className="note-content">
+        <h3 className="note-title">Selected Note</h3>
+        <div className="note-details">
+          <div className="note-item">
+            <span className="note-label">Name:</span>
+            <span className="note-value">{display.name}</span>
+          </div>
+          <div className="note-item">
+            <span className="note-label">Tags:</span>
+            <span className="note-value">{display.tags}</span>
+          </div>
+          <div className="note-item-details">
+            <span className="note-label">Details:</span>
+            <span className="note-value">{display.details}</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

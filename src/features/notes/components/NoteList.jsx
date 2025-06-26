@@ -2,7 +2,7 @@ import { useState } from "react";
 import { IoIosAdd } from "react-icons/io";
 import "../../../styles/noteList.css";
 
-function NoteList({ setDisplay, notes, setData, data }) {
+function NoteList({ setDisplay, setAllNotes, allNotes }) {
   const tagOptions = ["a", "b", "c", "d", "e", "f", "g"];
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
@@ -11,10 +11,10 @@ function NoteList({ setDisplay, notes, setData, data }) {
   const addNewItem = (e) => {
     e.preventDefault();
 
-    setData([
-      ...data,
+    setAllNotes([
+      ...allNotes,
       {
-        id: new Date().toISOString(),
+        id: new Date(),
         name: name.trim() === "" ? "empty" : name,
         details,
         tags,
@@ -36,11 +36,14 @@ function NoteList({ setDisplay, notes, setData, data }) {
 
       {open && (
         <div className="input-pop">
-          <button onClick={() => setOpen(false)}>X</button>
-          <form onSubmit={addNewItem}>
-            <div>
+          <button className="input-close-btn" onClick={() => setOpen(false)}>
+            X
+          </button>
+          <form onSubmit={addNewItem} className="input-form">
+            <div className="inputs-labels">
               <label htmlFor="name">Name</label>
               <input
+                className="input-area"
                 type="text"
                 id="name"
                 value={name}
@@ -48,39 +51,45 @@ function NoteList({ setDisplay, notes, setData, data }) {
               />
             </div>
 
-            <div>
+            <div className="inputs-labels">
               <label>Tags</label>
-              {tagOptions.map((tag) => (
-                <button
-                  type="button"
-                  key={tag}
-                  onClick={() => setTags(tag)}
-                  className={tags === tag ? "active-tag" : ""}
-                >
-                  {tag}
-                </button>
-              ))}
+              <div className="input-tags">
+                {tagOptions.map((tag) => (
+                  <button
+                    type="button"
+                    key={tag}
+                    id="tag"
+                    onClick={() => setTags(tag)}
+                    className={tags === tag ? "active-tag" : ""}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
             </div>
 
-            <div>
+            <div className="inputs-labels">
               <label htmlFor="details">Details</label>
-              <input
-                type="text"
+              <textarea
+                className="input-area"
                 id="details"
                 value={details}
                 onChange={(e) => setDetails(e.target.value)}
+                rows={5}
+                placeholder="Enter more details..."
               />
             </div>
-
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
+            <div className="submit">
+              <button type="submit" className="submit-btn">
+                Submit
+              </button>
+            </div>
           </form>
         </div>
       )}
 
       <div className="list-container">
-        {notes.map((item, index) => (
+        {allNotes.map((item, index) => (
           <div
             className="list-details"
             key={item.id || index}
@@ -88,7 +97,7 @@ function NoteList({ setDisplay, notes, setData, data }) {
           >
             <p>{item.name}</p>
             <p>{item.tags}</p>
-            <p>{item.details}</p>
+            {/* <p>{item.details}</p> */}
           </div>
         ))}
       </div>
