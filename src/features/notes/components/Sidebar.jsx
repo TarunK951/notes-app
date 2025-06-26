@@ -50,7 +50,7 @@ function Sidebar({
   };
 
   return (
-    <>
+    <div className="sidebar">
       <div className={`sidebar-wrapper ${isSidebarOpen ? "open" : ""}`}>
         <aside className="notes-sidebar">
           <div className="logo-container">
@@ -142,7 +142,7 @@ function Sidebar({
           </div>
         </aside>
       </div>
-    </>
+    </div>
   );
 }
 
