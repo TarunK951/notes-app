@@ -1,67 +1,170 @@
+/* ... (Keep all existing :root, body.dark, and * styles as is) ... */
+
+.sidebar-wrapper {
+  background: var(--bg-secondary);
+  height: 100%;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.filter-wrapper {
+  background: var(--bg-secondary);
+  height: 100%;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+@media (max-width: 600px) {
+  .sidebar-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    transform: translateX(-100%);
+  }
+  .sidebar-wrapper.open {
+    transform: translateX(0);
+  }
+
+  .filter-wrapper {
+    position: fixed;
+    top: 80px;
+    right: 0;
+    width: 250px;
+    max-height: fit-content;
+    transform: translateX(100%);
+  }
+  .filter-wrapper.open {
+    transform: translateX(0);
+  }
+}
+
+.notes-sidebar {
+  padding: 20px;
+}
+
 .logo-container {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 12px;
+  padding: 10px;
+}
+
+.logo-container h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
 }
 
 .sidebar-options {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding-top: 30px;
-  align-items: center;
+  gap: 8px;
+  padding: 20px 10px;
 }
 
 .sidebar-btn {
   display: flex;
-  gap: 10px;
-  justify-content: center;
   align-items: center;
-  background-color: transparent;
-  width: 150px;
-  padding: 5px 3px;
+  gap: 6px;
+  padding: 10px 12px;
+  background: var(--bg-primary);
   border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: var(--text-primary);
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-  color: #333;
+  transition: background 0.2s, transform 0.2s;
+  text-align: left;
 }
 
 .sidebar-btn:hover {
-  background-color: #e0e0e0;
+  background: var(--primary);
+  color: #ffffff;
+  transform: translateX(5px);
 }
 
 .sidebar-btn.selected {
-  background-color: #4caf50;
+  background: var(--primary);
+  color: #ffffff;
 }
 
-.sidebar-btn.selected:hover {
-  background-color: #45a049;
+.filter-panel {
+  padding: 20px;
 }
 
-/* tags css */
-.tags-container {
+.tags-container,
+.priority-container {
+  padding: 20px 10px;
+}
+
+.tags-title,
+.priority-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.tag-names,
+.priority-names {
   display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  gap: 25px;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.tags-title {
-  text-align: left;
-  padding-left: 20px;
+.tag-btn,
+.priority-btn {
+  padding: 6px 12px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
 }
 
-.tag-names {
-  padding-left: 35px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  justify-content: center;
-  align-items: left;
+.tag-btn:hover,
+.priority-btn:hover {
+  background: var(--secondary);
+  color: #ffffff;
 }
 
-.tag-btn {
-  width: 80px;
-  padding: 5px 2px;
+.tag-btn.selected,
+.priority-btn.selected {
+  background: var(--secondary);
+  color: #ffffff;
+}
+
+@media (max-width: 600px) {
+  .notes-sidebar {
+    padding: 15px;
+  }
+  .logo-container h2 {
+    font-size: 1.3rem;
+  }
+  .sidebar-options {
+    padding: 10px;
+  }
+  .sidebar-btn {
+    font-size: 0.9rem;
+    padding: 8px 10px;
+  }
+  .filter-panel {
+    padding: 15px;
+  }
+  .tags-container,
+  .priority-container {
+    padding: 10px;
+  }
+  .tags-title,
+  .priority-title {
+    font-size: 1.1rem;
+  }
+  .tag-btn,
+  .priority-btn {
+    font-size: 0.85rem;
+    padding: 5px 10px;
+  }
 }
