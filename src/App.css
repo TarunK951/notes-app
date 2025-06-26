@@ -10,3 +10,26 @@
   min-width: 360px;
   height: 100%;
 }
+:root {
+  --bg-primary: #f8f1e9;
+  --bg-secondary: #fff5e6;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --primary: #ff5733;
+  --secondary: #00c4b4;
+  --accent: #ff7043;
+  --border: #d3d3d3;
+  --shadow: rgba(0, 0, 0, 0.15);
+}
+
+body.dark {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2a2a2a;
+  --text-primary: #e8e8e8;
+  --text-secondary: #a0a0a0;
+  --primary: #ff7043;
+  --secondary: #26a69a;
+  --accent: #ff5733;
+  --border: #444444;
+  --shadow: rgba(0, 0, 0, 0.3);
+}

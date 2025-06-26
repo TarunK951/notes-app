@@ -3,6 +3,8 @@ import NoteActions from "./NoteActions";
 import SelectedNote from "./SelectedNote";
 
 function NotesListItem({
+  allNotes,
+  setAllNotes,
   display,
   setDisplay,
   deleteNote,
@@ -20,7 +22,12 @@ function NotesListItem({
   return (
     <div>
       <div className="container">
-        <SelectedNote display={display} setDisplay={setDisplay} />
+        <SelectedNote
+          allNotes={allNotes}
+          setAllNotes={setAllNotes}
+          display={display}
+          setDisplay={setDisplay}
+        />
         <NoteActions
           display={display}
           view={view}
