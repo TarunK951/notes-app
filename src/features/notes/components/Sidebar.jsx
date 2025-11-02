@@ -55,7 +55,7 @@ function Sidebar({
         <aside className="notes-sidebar">
           <div className="logo-container">
             <GrNotes />
-            <h2>Notes</h2>
+            <h2>Task Manager</h2>
           </div>
           <div className="sidebar-options">
             <button
